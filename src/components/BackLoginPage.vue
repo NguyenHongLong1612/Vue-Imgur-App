@@ -1,10 +1,8 @@
 <template>
     <section>
         <div class="login-page">
-            <div class="title">Oops!</div>
-            <div class="description">
-                Đăng nhập thất bại. Bạn hãy bấm nút để đăng nhập lại nhé!
-            </div>
+            <div class="title">Oops! Đăng nhập thất bại.</div>
+            <div class="description">Bạn hãy bấm nút để đăng nhập lại nhé!</div>
             <button @click="backLogin" class="btn-login">
                 Đăng nhập &rightarrow;
             </button>
