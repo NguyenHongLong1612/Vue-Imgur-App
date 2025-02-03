@@ -1,7 +1,7 @@
 <template>
     <div class="show--image" v-if="getStatusOpenImg" @click="exitImage">
         <div class="image-container">
-            <img :src="getLinkImg" alt="" @click="cancelClick" />
+            <img :src="getLinkImgShow" alt="" @click="cancelClick" />
         </div>
         <div class="exit" @click="exitImage">
             <svg
@@ -32,7 +32,7 @@ export default {
         },
     },
     computed: {
-        ...mapGetters('openImg', ['getStatusOpenImg', 'getLinkImg']),
+        ...mapGetters('openImg', ['getStatusOpenImg', 'getLinkImgShow']),
     },
 };
 </script>

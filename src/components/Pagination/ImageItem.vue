@@ -1,7 +1,7 @@
 <template>
     <div class="image" :style="{ backgroundImage: `url(${link})` }">
         <a :href="link" @click="clickShowImage"></a>
-        <div class="trash">
+        <div class="trash" @click="openModalDeleteImg">
             <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="32"
@@ -22,13 +22,18 @@ import { mapActions } from 'vuex';
 export default {
     props: ['id', 'link', 'deleteHash'],
     methods: {
-        ...mapActions('openImg', ['setStatusOpenImg', 'setLinkImg']),
+        ...mapActions('openImg', ['setStatusOpenImg', 'setLinkImgShow']),
+        ...mapActions('deleteImg', ['setOpenModal', 'setLinkImgDel']),
         clickShowImage(event) {
             if (this.link) {
                 event.preventDefault();
             }
             this.setStatusOpenImg({ status: true });
-            this.setLinkImg({ linkImg: this.link });
+            this.setLinkImgShow({ linkImgShow: this.link });
+        },
+        openModalDeleteImg() {
+            this.setOpenModal({ status: true });
+            this.setLinkImgDel({ linkImg: this.link });
         },
     },
 };

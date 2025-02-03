@@ -2,6 +2,9 @@
     <teleport to="#app">
         <show-image-vue></show-image-vue>
     </teleport>
+    <teleport to="#app">
+        <delete-image-vue></delete-image-vue>
+    </teleport>
     <div class="home-page">
         <div class="page">
             <navigation-bar></navigation-bar>
@@ -11,6 +14,7 @@
 </template>
 
 <script>
+import DeleteImageVue from './DeleteImage.vue';
 import NavigationBar from './NavigationBar.vue';
 import ShowImageVue from './ShowImage.vue';
 
@@ -18,6 +22,7 @@ export default {
     components: {
         NavigationBar,
         ShowImageVue,
+        DeleteImageVue,
     },
     created() {
         if (!localStorage.getItem('token')) {

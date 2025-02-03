@@ -4,30 +4,30 @@ const openImg = {
     namespaced: true,
     state: {
         status: false,
-        linkImg: '',
+        linkImgShow: '',
     },
     getters: {
         getStatusOpenImg(state) {
             return state.status;
         },
-        getLinkImg(state) {
-            return state.linkImg;
+        getLinkImgShow(state) {
+            return state.linkImgShow;
         },
     },
     mutations: {
         setStatusOpenImg(state, payload) {
             state.status = payload.status;
         },
-        setLinkImg(state, payload) {
-            state.linkImg = payload.linkImg;
+        setLinkImgShow(state, payload) {
+            state.linkImgShow = payload.linkImgShow;
         },
     },
     actions: {
         setStatusOpenImg({ commit }, payload) {
             commit('setStatusOpenImg', payload);
         },
-        setLinkImg({ commit }, payload) {
-            commit('setLinkImg', payload);
+        setLinkImgShow({ commit }, payload) {
+            commit('setLinkImgShow', payload);
         },
     },
 };
