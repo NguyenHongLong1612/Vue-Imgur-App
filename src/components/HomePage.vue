@@ -1,4 +1,7 @@
 <template>
+    <teleport to="#app">
+        <show-image-vue></show-image-vue>
+    </teleport>
     <div class="home-page">
         <div class="page">
             <navigation-bar></navigation-bar>
@@ -9,9 +12,12 @@
 
 <script>
 import NavigationBar from './NavigationBar.vue';
+import ShowImageVue from './ShowImage.vue';
+
 export default {
     components: {
         NavigationBar,
+        ShowImageVue,
     },
     created() {
         if (!localStorage.getItem('token')) {
@@ -35,6 +41,6 @@ export default {
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    gap: 48px;
+    gap: 32px;
 }
 </style>
