@@ -23,7 +23,11 @@ export default {
     props: ['id', 'link', 'deleteHash'],
     methods: {
         ...mapActions('openImg', ['setStatusOpenImg', 'setLinkImgShow']),
-        ...mapActions('deleteImg', ['setOpenModal', 'setLinkImgDel']),
+        ...mapActions('deleteImg', [
+            'setOpenModal',
+            'setLinkImgDel',
+            'setDeleteImageHash',
+        ]),
         clickShowImage(event) {
             if (this.link) {
                 event.preventDefault();
@@ -34,6 +38,7 @@ export default {
         openModalDeleteImg() {
             this.setOpenModal({ status: true });
             this.setLinkImgDel({ linkImg: this.link });
+            this.setDeleteImageHash({ deleteImageHash: this.deleteHash });
         },
     },
 };

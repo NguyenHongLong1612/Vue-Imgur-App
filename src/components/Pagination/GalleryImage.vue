@@ -6,7 +6,7 @@
                 :key="image.id"
                 :id="image.id"
                 :link="image.link"
-                :deleteHash="image.deleteHash"
+                :delete-hash="image.deletehash"
             ></image-item-vue>
         </div>
         <footer-pag-vue></footer-pag-vue>

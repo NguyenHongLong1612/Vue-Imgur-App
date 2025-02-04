@@ -8,7 +8,7 @@
             ></div>
             <div class="btn">
                 <div class="btn-cancel" @click="exitModal">Huỷ</div>
-                <div class="btn-delete">Xoá</div>
+                <div class="btn-delete" @click="deleteImage">Xoá</div>
             </div>
         </div>
         <div class="exit" @click="exitModal">
@@ -32,11 +32,33 @@ import { mapActions, mapGetters } from 'vuex';
 export default {
     methods: {
         ...mapActions('deleteImg', ['setOpenModal']),
+        ...mapActions('fetchApi', ['setImagesList', 'deleteImgWithImgHash']),
+        ...mapActions('pagination', ['dividePage', 'setImageForCurPage']),
         exitModal() {
             this.setOpenModal({ status: false });
         },
         cancelModal(event) {
             event.stopPropagation();
+        },
+        async deleteImage() {
+            const oldListImages = this.getImagesList;
+
+            const index = oldListImages.findIndex(
+                (img) => img.deletehash === this.getDeleteImageHash
+            );
+
+            if (index !== -1) {
+                oldListImages.splice(index, 1);
+                this.setImagesList({ images: [...oldListImages] });
+            }
+
+            this.dividePage();
+
+            this.setImageForCurPage();
+
+            await this.deleteImgWithImgHash();
+
+            this.setOpenModal({ status: false });
         },
     },
     computed: {
@@ -45,6 +67,8 @@ export default {
             'getLinkImgDel',
             'getDeleteImageHash',
         ]),
+        ...mapGetters('fetchApi', ['getImagesList']),
+        ...mapGetters('pagination', ['getCurrentPage']),
     },
 };
 </script>

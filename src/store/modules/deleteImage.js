@@ -25,6 +25,9 @@ const deleteImg = {
         setLinkImgDel(state, payload) {
             state.linkImgDel = payload.linkImg;
         },
+        setDeleteImageHash(state, payload) {
+            state.deleteImageHash = payload.deleteImageHash;
+        },
     },
     actions: {
         setOpenModal({ commit }, payload) {
@@ -32,6 +35,9 @@ const deleteImg = {
         },
         setLinkImgDel({ commit }, payload) {
             commit('setLinkImgDel', payload);
+        },
+        setDeleteImageHash({ commit }, payload) {
+            commit('setDeleteImageHash', payload);
         },
     },
 };

@@ -11,10 +11,10 @@
             <div></div>
         </div>
         <div class="content" v-else>
+            <div class="refresh-btn" @click="refreshPage">Làm mới</div>
             <div class="warning" v-if="getImagesList.length === 0">
                 Oops! Kho lưu trữ của bạn rỗng. Hãy tải ảnh lên nhé !
             </div>
-            <div class="refresh-btn" @click="refreshPage">Làm mới</div>
             <gallery-image-vue></gallery-image-vue>
         </div>
     </div>
