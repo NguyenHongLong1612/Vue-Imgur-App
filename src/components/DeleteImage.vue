@@ -34,6 +34,8 @@ export default {
         ...mapActions('deleteImg', ['setOpenModal']),
         ...mapActions('fetchApi', ['setImagesList', 'deleteImgWithImgHash']),
         ...mapActions('pagination', ['dividePage', 'setImageForCurPage']),
+        ...mapActions('addNotification', ['setAddNoti']),
+
         exitModal() {
             this.setOpenModal({ status: false });
         },
@@ -59,6 +61,8 @@ export default {
             await this.deleteImgWithImgHash();
 
             this.setOpenModal({ status: false });
+
+            this.setAddNoti({ status: true });
         },
     },
     computed: {

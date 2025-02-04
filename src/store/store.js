@@ -7,6 +7,7 @@ import fetchApi from './modules/fetchApi';
 import pagination from './modules/pagination';
 import openImg from './modules/openImage';
 import deleteImg from './modules/deleteImage';
+import addNotification from './modules/addNotification';
 
 const store = createStore({
     modules: {
@@ -16,6 +17,7 @@ const store = createStore({
         pagination,
         openImg,
         deleteImg,
+        addNotification,
     },
 });
 

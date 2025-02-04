@@ -5,6 +5,9 @@
     <teleport to="#app">
         <delete-image-vue></delete-image-vue>
     </teleport>
+    <teleport to="#app">
+        <notification-success-delete-image></notification-success-delete-image>
+    </teleport>
     <div class="home-page">
         <div class="page">
             <navigation-bar></navigation-bar>
@@ -17,12 +20,14 @@
 import DeleteImageVue from './DeleteImage.vue';
 import NavigationBar from './NavigationBar.vue';
 import ShowImageVue from './ShowImage.vue';
+import NotificationSuccessDeleteImage from './NotificationSuccessDeleteImage.vue';
 
 export default {
     components: {
         NavigationBar,
         ShowImageVue,
         DeleteImageVue,
+        NotificationSuccessDeleteImage,
     },
     created() {
         if (!localStorage.getItem('token')) {
