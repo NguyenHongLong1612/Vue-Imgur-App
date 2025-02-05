@@ -1,12 +1,10 @@
 <template>
     <teleport to="#app">
-        <show-image-vue></show-image-vue>
-    </teleport>
-    <teleport to="#app">
-        <delete-image-vue></delete-image-vue>
-    </teleport>
-    <teleport to="#app">
-        <notification-success-delete-image></notification-success-delete-image>
+        <div>
+            <show-image-vue></show-image-vue>
+            <delete-image-vue></delete-image-vue>
+            <notification-success-delete-image></notification-success-delete-image>
+        </div>
     </teleport>
     <div class="home-page">
         <div class="page">
