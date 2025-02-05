@@ -21,6 +21,7 @@ const auth = {
         logout({ commit }) {
             commit('setToken', { value: null });
             localStorage.removeItem('token');
+            localStorage.removeItem('nameButton');
         },
 
         login() {

@@ -3,7 +3,7 @@
 const nav = {
     namespaced: true,
     state: {
-        nameButton: 'store',
+        nameButton: localStorage.getItem('nameButton') || 'store',
     },
     getters: {
         getNameButton(state) {
@@ -13,6 +13,7 @@ const nav = {
     mutations: {
         setNameButton(state, payload) {
             state.nameButton = payload.nameButton;
+            localStorage.setItem('nameButton', payload.nameButton);
         },
     },
     actions: {
