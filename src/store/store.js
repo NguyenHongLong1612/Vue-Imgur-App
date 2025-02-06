@@ -8,6 +8,7 @@ import pagination from './modules/pagination';
 import openImg from './modules/openImage';
 import deleteImg from './modules/deleteImage';
 import addNotification from './modules/addNotification';
+import uploadImage from './modules/uploadImage';
 
 const store = createStore({
     modules: {
@@ -18,6 +19,7 @@ const store = createStore({
         openImg,
         deleteImg,
         addNotification,
+        uploadImage,
     },
 });
 

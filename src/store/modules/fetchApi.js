@@ -74,6 +74,41 @@ const fetchApi = {
                 console.error(err);
             }
         },
+
+        async uploadListImg({ rootGetters }) {
+            const list = rootGetters['uploadImage/getUploadImageList'];
+
+            try {
+                await Promise.all(
+                    list.map(async (img) => {
+                        const formData = new FormData();
+                        formData.append('image', img);
+
+                        const response = await fetch(
+                            'https://api.imgur.com/3/image',
+                            {
+                                method: 'POST',
+                                headers: {
+                                    Authorization: `Bearer ${localStorage.getItem(
+                                        'token'
+                                    )}`,
+                                },
+                                body: formData,
+                            }
+                        );
+
+                        if (!response.ok)
+                            throw new Error('Không thể tải ảnh lên!');
+
+                        const result = await response.json();
+                        console.log('Upload thành công:', result);
+                        return result;
+                    })
+                );
+            } catch (error) {
+                console.error('Lỗi khi upload ảnh:', error);
+            }
+        },
     },
 };
 

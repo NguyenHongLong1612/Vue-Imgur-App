@@ -37,7 +37,8 @@ export default {
 
 <style scoped>
 .home-page {
-    height: 100%;
+    min-height: 100%;
+    height: auto;
     background-color: #fffd63;
 }
 

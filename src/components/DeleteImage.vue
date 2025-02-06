@@ -34,7 +34,11 @@ export default {
         ...mapActions('deleteImg', ['setOpenModal']),
         ...mapActions('fetchApi', ['setImagesList', 'deleteImgWithImgHash']),
         ...mapActions('pagination', ['dividePage', 'setImageForCurPage']),
-        ...mapActions('addNotification', ['setAddNoti']),
+        ...mapActions('addNotification', [
+            'setAddNoti',
+            'setTypeNoti',
+            'setTitleNoti',
+        ]),
 
         exitModal() {
             this.setOpenModal({ status: false });
@@ -63,6 +67,10 @@ export default {
             this.setOpenModal({ status: false });
 
             this.setAddNoti({ status: true });
+
+            this.setTypeNoti({ typeNoti: 'success' });
+
+            this.setTitleNoti({ titleNoti: 'Bạn đã xoá ảnh thành công !' });
         },
     },
     computed: {
@@ -79,7 +87,7 @@ export default {
 
 <style scoped>
 .modal-delete-image {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     z-index: 1000;

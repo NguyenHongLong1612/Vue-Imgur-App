@@ -6,7 +6,11 @@
 import { mapGetters, mapActions } from 'vuex';
 export default {
     methods: {
-        ...mapActions('addNotification', ['setAddNoti']),
+        ...mapActions('addNotification', [
+            'setAddNoti',
+            'setTypeNoti',
+            'setTitleNoti',
+        ]),
         addNotification() {
             if (this.getAddNoti) {
                 const toastList = document.querySelector('.toast--list');
@@ -16,11 +20,16 @@ export default {
 
                 const toastItem = document.createElement('div');
 
-                toastItem.classList.add('toast--item');
+                toastItem.classList.add(
+                    'toast--item',
+                    `toast--${this.getTypeNoti}`
+                );
 
-                toastItem.innerHTML = `
-                <div class="icon">
-                    <svg
+                let icon;
+
+                if (this.getTypeNoti === 'success') {
+                    icon = `
+                        <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="48"
                         height="48"
@@ -31,9 +40,21 @@ export default {
                             d="M173.66,98.34a8,8,0,0,1,0,11.32l-56,56a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35A8,8,0,0,1,173.66,98.34ZM232,128A104,104,0,1,1,128,24,104.11,104.11,0,0,1,232,128Zm-16,0a88,88,0,1,0-88,88A88.1,88.1,0,0,0,216,128Z"
                         ></path>
                     </svg>
+                    `;
+                }
+
+                if (this.getTypeNoti === 'error') {
+                    icon = `
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="#991b1b" viewBox="0 0 256 256"><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm-8-80V80a8,8,0,0,1,16,0v56a8,8,0,0,1-16,0Zm20,36a12,12,0,1,1-12-12A12,12,0,0,1,140,172Z"></path></svg>
+                    `;
+                }
+
+                toastItem.innerHTML = `
+                <div class="icon">
+                    ${icon}
                 </div>
                 <div class="content">
-                    <div class="description">Bạn đã xoá ảnh thành công !</div>
+                    <div class="description">${this.getTitleNoti}</div>
                 </div>
                 <div class="btn-exit--toast">
                     <svg
@@ -67,11 +88,19 @@ export default {
                 });
 
                 this.setAddNoti({ status: false });
+
+                this.setTypeNoti({ typeNoti: '' });
+
+                this.setTitleNoti({ titleNoti: '' });
             }
         },
     },
     computed: {
-        ...mapGetters('addNotification', ['getAddNoti']),
+        ...mapGetters('addNotification', [
+            'getAddNoti',
+            'getTypeNoti',
+            'getTitleNoti',
+        ]),
     },
     watch: {
         getAddNoti: {
@@ -99,13 +128,20 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid #16a34a;
     border-radius: 8px;
     background-color: white;
     gap: 16px;
     overflow: hidden;
     animation: slide-in linear 0.5s, fade-out linear 1s 2s;
     transition: all 1s;
+}
+
+.toast--success {
+    border: 1px solid #16a34a;
+}
+
+.toast--error {
+    border: 1px solid #991b1b;
 }
 
 @keyframes slide-in {
