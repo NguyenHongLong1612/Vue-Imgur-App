@@ -7,8 +7,8 @@
                 :style="{ backgroundImage: `url(${getLinkImgDel})` }"
             ></div>
             <div class="btn">
-                <div class="btn-cancel" @click="exitModal">Huỷ</div>
-                <div class="btn-delete" @click="deleteImage">Xoá</div>
+                <button class="btn-cancel" @click="exitModal">Huỷ</button>
+                <button class="btn-delete" @click="deleteImage">Xoá</button>
             </div>
         </div>
         <div class="exit" @click="exitModal">
@@ -47,6 +47,11 @@ export default {
             event.stopPropagation();
         },
         async deleteImage() {
+            const btnDeleteImage = document.querySelector('.btn-delete');
+
+            btnDeleteImage.disabled = true;
+            btnDeleteImage.style.cursor = 'not-allowed';
+
             const oldListImages = this.getImagesList;
 
             const index = oldListImages.findIndex(
@@ -66,10 +71,11 @@ export default {
 
             this.setOpenModal({ status: false });
 
+            btnDeleteImage.disabled = false;
+            btnDeleteImage.style.cursor = 'pointer';
+
             this.setAddNoti({ status: true });
-
             this.setTypeNoti({ typeNoti: 'success' });
-
             this.setTitleNoti({ titleNoti: 'Bạn đã xoá ảnh thành công !' });
         },
     },
